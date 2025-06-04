@@ -2,11 +2,11 @@
 
 import { useState } from 'react';
 
-function Spinner() {
+function Spinner({ isDarkMode }: { isDarkMode: boolean }) {
   return (
     <div className="flex items-center justify-center space-x-2">
       <div className="w-4 h-4 border-2 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
-      <p className="text-gray-600">Loading...</p>
+      <p className={`${isDarkMode ? 'text-white' : 'text-gray-600'}`}>Loading...</p>
     </div>
   );
 }
@@ -17,6 +17,7 @@ export default function Home() {
   const [clonedHtml, setClonedHtml] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [showRawHtml, setShowRawHtml] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,17 +49,25 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className={`min-h-screen ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50 text-gray-900'}`}>
       <div className="max-w-4xl mx-auto px-6 py-12">
-        <div className="bg-white rounded-lg shadow-sm p-8 space-y-8">
+        <div className={`rounded-lg shadow-sm p-8 space-y-8 ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
+          <button
+            onClick={() => setIsDarkMode(!isDarkMode)}
+            className="absolute top-4 right-4 px-4 py-2 rounded-full text-xl"
+            aria-label="Toggle dark mode"
+          >
+            {isDarkMode ? '🌙' : '☀️'}
+          </button>
+
           <div className="text-center space-y-2">
-            <h1 className="text-3xl font-bold text-gray-900">Website Cloner</h1>
-            <p className="text-gray-600">Enter a URL to clone its HTML structure</p>
+            <h1 className={`text-3xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Website Cloner</h1>
+            <p className={`text-gray-600 ${isDarkMode ? 'text-white' : ''}`}>Enter a URL to clone its HTML structure</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
-              <label htmlFor="url" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="url" className={`block text-sm font-medium ${isDarkMode ? 'text-white' : 'text-gray-700'}`}>
                 Website URL
               </label>
               <input
@@ -67,7 +76,7 @@ export default function Home() {
                 value={targetUrl}
                 onChange={(e) => setTargetUrl(e.target.value)}
                 placeholder="Enter website URL (e.g., https://example.com)"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${isDarkMode ? 'border-gray-600 bg-gray-700 text-white placeholder-white' : 'border-gray-300 bg-white text-gray-900 placeholder-gray-500'}`}
                 required
                 disabled={loading}
               />
@@ -90,13 +99,13 @@ export default function Home() {
 
           {loading && (
             <div className="flex justify-center py-8">
-              <Spinner />
+              <Spinner isDarkMode={isDarkMode} />
             </div>
           )}
 
           {clonedHtml && (
             <div className="space-y-4">
-              <h2 className="text-xl font-semibold text-gray-900">Cloned Website Preview</h2>
+              <h2 className={`text-xl font-semibold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Cloned Website Preview</h2>
 
               <button
                 onClick={() => setShowRawHtml(!showRawHtml)}
@@ -115,7 +124,7 @@ export default function Home() {
                   style={{
                     width: "100%",
                     height: "80vh",
-                    border: "1px solid #e5e7eb",
+                    border: `1px solid ${isDarkMode ? '#4b5563' : '#e5e7eb'}`,
                     borderRadius: "0.5rem",
                   }}
                   sandbox="allow-same-origin"
