@@ -32,11 +32,10 @@ uv sync
 Create a `.env` file in the `backend` directory with the following content:
 
 ```dotenv
-BROWSERBASE_API_KEY=your_browserbase_api_key_here
 GEMINI_API_KEY=your_gemini_api_key_here
 ```
 
-Replace `your_browserbase_api_key_here` and `your_gemini_api_key_here` with your actual API keys. You can obtain a Browserbase API key from [Browserbase](https://browserbase.com/) and a Gemini API key from [Google AI Studio](https://aistudio.google.com/).
+Replace `your_gemini_api_key_here` with your actual Gemini API key. You can obtain a Gemini API key from [Google AI Studio](https://aistudio.google.com/).
 
 Add the `.env` file to your `.gitignore` to prevent committing your API keys:
 
@@ -46,11 +45,10 @@ echo ".env" >> .gitignore
 
 ### 4. Running the Backend
 
-Make sure you are in the project root directory (`orchids-challenge`). Run the backend development server using `uv`:
+Make sure you are in the backend directory (`orchids-challenge/backend`). Run the backend development server using `uv`:
 
 ```bash
-cd .. # Go back to project root if you are in backend directory
-python3 -m uvicorn backend.app.main:app --reload
+uv run fastapi dev
 ```
 
 Keep this terminal window open.
