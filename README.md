@@ -82,3 +82,11 @@ Keep this terminal window open. The frontend should be accessible at `http://loc
 ## Usage
 
 Open your browser to `http://localhost:3000`. Enter a website URL in the input field and click "Clone Website" to generate an HTML clone.
+
+Once the cloning is complete, you will see a preview of the cloned website. Below the preview, you can:
+
+*   Click "Show Raw HTML" to view the generated HTML source code directly.
+*   Click "Hide Raw HTML" to switch back to the visual preview.
+*   Click "Download HTML File" to save the generated HTML as a file named `cloned_site.html`.
+
+Additionally, there is a sun/moon icon button in the top right corner to toggle between light and dark mode.
