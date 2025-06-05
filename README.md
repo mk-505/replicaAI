@@ -1,4 +1,4 @@
-# Orchids SWE Intern Challenge Template
+# ReplicaAI
 
 This project consists of a backend built with FastAPI and a frontend built with Next.js and TypeScript.
 
@@ -10,7 +10,7 @@ To get this project running, follow these steps:
 
 ```bash
 git clone <repository_url>
-cd orchids-challenge
+cd replicaAI
 ```
 
 ### 2. Backend Setup
@@ -45,7 +45,7 @@ echo ".env" >> .gitignore
 
 ### 4. Running the Backend
 
-Make sure you are in the backend directory (`orchids-challenge/backend`). Run the backend development server using `uv`:
+Make sure you are in the backend directory (`replicaAI/backend`). Run the backend development server using `uv`:
 
 ```bash
 uv run fastapi dev
